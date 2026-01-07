@@ -111,7 +111,7 @@ docker-compose up
 
 ---
 
-##  Notes for Reviewers / Interviewers
+##  Notes for Reviewers 
 
 * Each tier has its own Git repository and Docker image
 * This repository is an **infrastructure orchestration layer**

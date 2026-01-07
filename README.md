@@ -2,11 +2,11 @@
 
 This repository represents the **system-level orchestration** of a 3-tier web application using **Docker Compose**.
 
-> ⚠️ **Important**: This repository does **not** contain application source code directly. Each tier (frontend, backend, database) lives in its **own independent GitHub repository** and is linked here conceptually and operationally via Docker images.
+> **Important**: This repository does **not** contain application source code directly. Each tier (frontend, backend, database) lives in its **own independent GitHub repository** and is linked here conceptually and operationally via Docker images.
 
 ---
 
-## 🧱 Architecture Overview
+## Architecture Overview
 
 This project follows a **classic 3-tier architecture**:
 
@@ -32,7 +32,7 @@ All three tiers run in **separate Docker containers** and communicate over a **s
 
 ---
 
-## 📦 Related Repositories (Source Code)
+##  Related Repositories (Source Code)
 
 Each tier is developed, versioned, and maintained independently:
 
@@ -44,19 +44,19 @@ This repository only orchestrates these services using Docker Compose.
 
 ---
 
-## 🐳 Docker-Based Deployment Model
+## Docker-Based Deployment Model
 
 Instead of cloning all repositories locally, this setup uses **Docker Hub images**:
 
-* `preranablownlama/demo-frontend`
-* `preranablownlama/demo-backend`
-* `preranablownlama/demo-db`
+* `preranabl/demo-fe`
+* `preranabl/demo-be`
+* `preranabl/demo-db`
 
 Docker Compose pulls these images and runs them together as one system.
 
 ---
 
-## 🔁 Request Flow (End-to-End)
+## Request Flow (End-to-End)
 
 1. User opens the **frontend** in the browser
 2. Frontend sends an HTTP request to the **backend API**
@@ -73,7 +73,7 @@ Browser → Frontend → Backend → MongoDB
 
 ---
 
-## ⚙️ docker-compose.yml Responsibilities
+##  docker-compose.yml Responsibilities
 
 The `docker-compose.yml` file:
 
@@ -87,7 +87,7 @@ This file is the **single entry point** to run the entire system.
 
 ---
 
-## 🚀 How to Run the Application
+##  How to Run the Application
 
 ```bash
 docker-compose up
@@ -111,7 +111,7 @@ docker-compose up
 
 ---
 
-## 📌 Notes for Reviewers / Interviewers
+##  Notes for Reviewers / Interviewers
 
 * Each tier has its own Git repository and Docker image
 * This repository is an **infrastructure orchestration layer**
@@ -119,8 +119,88 @@ docker-compose up
 
 ---
 
+## 🔍 How to Verify Data Inside the Database Container
+
+Since MongoDB runs inside a Docker container, you need to **enter the container** to inspect stored data.
+
+### 1️⃣ List running containers
+
+```bash
+docker ps
+```
+
+Look for the MongoDB container name (e.g. `mongo-db`).
+
+---
+
+### 2️⃣ Open a shell inside the MongoDB container
+
+```bash
+docker exec -it mongo-db mongosh -u admin -p admin123 --authenticationDatabase admin
+```
+
+This opens the MongoDB shell **inside the container**.
+
+---
+
+### 3️⃣ Switch to the application database
+
+```js
+use tier-demo
+```
+
+---
+
+### 4️⃣ View collections
+
+```js
+show collections
+```
+
+Expected output:
+
+```
+users
+```
+
+---
+
+### 5️⃣ View stored data
+
+```js
+db.users.find().pretty()
+```
+
+This confirms that:
+
+* Backend requests are reaching MongoDB
+* Data is being persisted correctly
+* Database volume is working as expected
+
+---
+
+### 6️⃣ (Optional) Verify persistence
+
+1. Stop containers:
+
+```bash
+docker-compose down
+```
+
+2. Start again:
+
+```bash
+docker-compose up
+```
+
+3. Re-check data using steps above
+
+If data still exists, **Docker volumes are working correctly**.
+
+---
+
 ## 👤 Author
 
 **Prerana Blown Lama**
 
-3-Tier Application · Doc
+3-Tier Application · Docker · Node.js · React · MongoDB

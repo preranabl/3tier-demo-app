@@ -101,7 +101,7 @@ docker-compose up
 
 ---
 
-## 🧠 Why This Design?
+## Why This Design?
 
 ✔ Clear separation of concerns
 ✔ Independent development & deployment
@@ -119,11 +119,11 @@ docker-compose up
 
 ---
 
-## 🔍 How to Verify Data Inside the Database Container
+## How to Verify Data Inside the Database Container
 
 Since MongoDB runs inside a Docker container, you need to **enter the container** to inspect stored data.
 
-### 1️⃣ List running containers
+### 1️1. List running containers
 
 ```bash
 docker ps
@@ -133,7 +133,7 @@ Look for the MongoDB container name (e.g. `mongo-db`).
 
 ---
 
-### 2️⃣ Open a shell inside the MongoDB container
+### 2️2. Open a shell inside the MongoDB container
 
 ```bash
 docker exec -it mongo-db mongosh -u admin -p admin123 --authenticationDatabase admin
@@ -143,7 +143,7 @@ This opens the MongoDB shell **inside the container**.
 
 ---
 
-### 3️⃣ Switch to the application database
+### 3️3. Switch to the application database
 
 ```js
 use tier-demo
@@ -151,7 +151,7 @@ use tier-demo
 
 ---
 
-### 4️⃣ View collections
+### 4️4. View collections
 
 ```js
 show collections
@@ -165,7 +165,7 @@ users
 
 ---
 
-### 5️⃣ View stored data
+### 5️5. View stored data
 
 ```js
 db.users.find().pretty()
@@ -179,7 +179,7 @@ This confirms that:
 
 ---
 
-### 6️⃣ (Optional) Verify persistence
+### 6️6. (Optional) Verify persistence
 
 1. Stop containers:
 

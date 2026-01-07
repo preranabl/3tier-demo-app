@@ -1,0 +1,9 @@
+[submodule "frontend"]
+	path = frontend
+	url = https://github.com/preranabl/Demo-frontend.git
+[submodule "backend"]
+	path = backend
+	url = https://github.com/preranabl/Demo-backend.git
+[submodule "database"]
+	path = database
+	url = https://github.com/preranabl/Demo-database.git

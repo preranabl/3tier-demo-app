@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   frontend:
-    image: preranabl/demo-fe:0.1.0
+    image: preranabl/demo-fe:0.3.0
     container_name: react-frontend
     ports:
       - "3001:3001"
@@ -14,7 +14,7 @@ services:
       - app-network
 
   backend:
-    image: preranabl/demo-be:0.1.0
+    image: preranabl/demo-be:0.2.0
     container_name: node-backend
     ports:
       - "3000:3000"
@@ -27,7 +27,7 @@ services:
       - app-network
 
   database:
-    image: preranabl/demo-db:0.1.0
+    image: preranabl/demo-db:0.2.0
     container_name: mongo-db
     ports:
       - "27017:27017"

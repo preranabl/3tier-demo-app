@@ -2,24 +2,22 @@ version: "3.9"
 
 services:
   frontend:
-    image: preranabl/demo-fe:0.3.0
-    container_name: react-frontend
-    ports:
-      - "3001:3001"
-    environment:
-      - REACT_APP_API_URL=http://backend:3000/api
-    depends_on:
-      - backend
-    networks:
-      - app-network
-
-  backend:
-    image: preranabl/demo-be:0.2.0
-    container_name: node-backend
+    image: preranabl/demo-fe:1.1.0
+    container_name: node-frontend
     ports:
       - "3000:3000"
     environment:
-      - PORT=3000
+      - REACT_APP_API_URL=http://backend:5001/api
+    stdin_open: true
+    tty: true
+
+  backend:
+    image: preranabl/demo-be:1.0.0
+    container_name: node-backend
+    ports:
+      - "5001:5001"
+    environment:
+      - PORT=5001
       - MONGO_URI=mongodb://admin:admin123@database:27017/tier-demo?authSource=admin
     depends_on:
       - database

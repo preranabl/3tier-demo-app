@@ -8,8 +8,6 @@ services:
       - "3000:3000"
     environment:
       - REACT_APP_API_URL=http://backend:5001/api
-    networks:
-      - frontend-backend
     stdin_open: true
     tty: true
 
@@ -24,8 +22,7 @@ services:
     depends_on:
       - database
     networks:
-      - frontend-backend
-      - backend-database
+      - app-network
 
   database:
     image: preranabl/demo-db:0.2.0
@@ -38,11 +35,10 @@ services:
     volumes:
       - mongo-data:/data/db
     networks:
-      - backend-database
+      - app-network
 
 networks:
-  frontend-backend:
-  backend-database:
+  app-network:
 
 volumes:
   mongo-data:

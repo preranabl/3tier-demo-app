@@ -95,8 +95,8 @@ docker-compose up
 
 ### Access Points
 
-* Frontend: [http://localhost:3001](http://localhost:3001)
-* Backend API: [http://localhost:3000](http://localhost:3000)
+* Frontend: [http://localhost:3000](http://localhost:3000)
+* Backend API: [http://localhost:5001](http://localhost:5001)
 * MongoDB: mongodb://localhost:27017
 
 ---

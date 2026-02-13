@@ -1,8 +1,7 @@
-version: "3.9"
 
 services:
   frontend:
-    image: preranabl/demo-fe:1.1.0
+    image: <your-dockerhub-username>/<frontend-dockerimage-name>
     container_name: node-frontend
     ports:
       - "3000:3000"
@@ -14,7 +13,7 @@ services:
     tty: true
 
   backend:
-    image: preranabl/demo-be:1.0.0
+    image: <your-dockerhub-username>/<backend-dockerimage-name>
     container_name: node-backend
     ports:
       - "5001:5001"
@@ -28,7 +27,7 @@ services:
       - backend-database
 
   database:
-    image: preranabl/demo-db:0.2.0
+    image: <your-dockerhub-username>/<database-dockerimage-name>
     container_name: mongo-db
     ports:
       - "27017:27017"
